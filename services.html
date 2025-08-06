@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+   <!--Favicon-->
+  <link rel="icon" type="image/png" href="favicon.png">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Services - Nassiye & Co.</title>
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    html { scroll-behavior: smooth;
+    }
+    /* HAMBURGER STYLES */
+    .hamburger {
+      display: none;
+      font-size: 2rem;
+      cursor: pointer;
+      color: #1f3d1f;
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background: white;
+        position: absolute;
+        top: 70px;
+        left: 0;
+        text-align: center;
+        padding: 1rem 0;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      }
+
+      .nav-links.active {
+        display: flex;
+      }
+
+      .hamburger {
+        display: block;
+      }
+
+      .nav-links li {
+        margin: 1rem 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="nav-container">
+      <div class="logo"> <a href="index.html"> <img src="logo.png" alt="Nassiye & Co." class="logo-img">
+      </a></div>
+      <nav>
+        <div class="hamburger" onclick="toggleMenu()">☰</div>
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="services.html" class="active">Services</a></li>
+          <li><a href="reports.html">Reports & Projects</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="index.html#contact">Contacts</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- PAGE HERO -->
+  <section class="page-hero">
+    <h1>Our Services</h1>
+    <p>Professional animal science services for farms, research, and training.</p>
+  </section>
+
+  <!-- SERVICES GRID -->
+  <section class="services-page">
+
+    <div class="service-card">
+      <span class="tag consultancy">Consultancy</span>
+      <h2>Livestock Management Advisory</h2>
+      <p>We provide expert advice to improve herd health, productivity, and farm efficiency.</p>
+      <div class="card-actions">
+        <a href="#service-form-section" class="btn btn-dark" onclick="selectService('Livestock Consultancy')">Book Service</a>
+      </div>
+    </div>
+
+    <div class="service-card">
+      <span class="tag project">Feed Formulation</span>
+      <h2>Custom Feed & Nutrition Plans</h2>
+      <p>Formulate cost-effective and balanced rations for poultry, dairy, and beef production.</p>
+      <div class="card-actions">
+        <a href="#service-form-section" class="btn btn-dark" onclick="selectService('Feed Formulation')">Request Formulation</a>
+      </div>
+    </div>
+
+    <div class="service-card">
+      <span class="tag research">Scientific Report Writing</span>
+      <h2>Research & Academic Support</h2>
+      <p>Professional guidance and IMRAD-based reports for students and research projects.</p>
+      <div class="card-actions">
+        <a href="reports.html" class="btn btn-dark">See Samples</a>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- CLIENT SERVICE BOOKING FORM -->
+  <section class="service-booking" id="service-form-section">
+    <h2>Book a Service</h2>
+    <p>Fill out the form below to request our services. We will contact you shortly.</p>
+
+    <form action="https://formspree.io/f/movllbve" method="POST" class="booking-form">
+      <input type="text" name="name" placeholder="Your Full Name" required>
+      <input type="email" name="email" placeholder="Your Email Address" required>
+      <input type="tel" name="phone" placeholder="Phone Number" required>
+
+      <select name="service" id="service-select" required>
+        <option value="">Select a Service</option>
+        <option value="Livestock Consultancy">Livestock Consultancy</option>
+        <option value="Feed Formulation">Feed Formulation</option>
+        <option value="Scientific Report Writing">Scientific Report Writing</option>
+      </select>
+
+      <textarea name="message" placeholder="Additional Details (optional)"></textarea>
+      <button type="submit" class="btn btn-dark">Submit Request</button>
+    </form>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>&copy; 2025 Nassiye & Co. All rights reserved.</p>
+  </footer>
+
+  <!-- SCRIPT FOR AUTO-SELECT -->
+  <script>
+    function selectService(serviceName) {
+      document.getElementById('service-select').value = serviceName;
+    }
+  </script>
+    <script>
+    function toggleMenu() {
+      document.querySelector(".nav-links").classList.toggle("active");
+    }
+  </script>
+</body>
+</html>

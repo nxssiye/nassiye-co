@@ -1,0 +1,537 @@
+/*1. BASE RESET & SITE SETUP*/
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 100px; /* Avoids header hiding section titles */
+}
+/*PRE LOADER STYLING*/
+#preloader {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: #fdfbf6; /* Match site background */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  transition: opacity 0.5s ease;
+}
+
+#preloader.hide {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Preloader container for logo + rotating border */
+.preloader-wrapper {
+  position: relative;
+  width: 150px; /* Bigger size */
+  height: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Circular rotating border */
+.preloader-wrapper::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 6px solid #2e5e2e; /* Green border */
+  border-top-color: transparent; /* Creates a spinner effect */
+  border-radius: 50%;
+  animation: spin 1.5s linear infinite;
+}
+
+/* Logo */
+.preloader-logo {
+  width: 100px; /* Slightly bigger logo */
+  border-radius: 50%; /* Makes the logo circular */
+  animation: fadeInScale 1s ease-in-out infinite alternate;
+}
+
+@keyframes fadeInScale {
+  from { opacity: 0.5; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1.1); }
+}
+
+/* Spinner animation */
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background: 
+    linear-gradient(rgba(253, 251, 246, 0.9), rgba(253, 251, 246, 0.9)), /* Overlay tint */
+    url('logo.png'); /* Decorative background logo */
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: #1f3d1f;
+  line-height: 1.6;
+  background-color: #fdfbf6;
+}
+
+/* 2. HEADER & NAVIGATION*/
+header {
+  background-color: #ffffffdd; /* Slight transparency */
+  padding: 1.5rem 2rem;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+/* NAVBAR LOGO IMAGE */
+.logo-img {
+  width: 60px; /* adjust size */
+  height: 60px;
+  border-radius: 50%; /* makes it circular */
+  object-fit: cover; /* keeps aspect ratio */
+  border: 2px solid #2e5e2e; /* green border */
+  transition: transform 0.3s ease;
+}
+
+.logo-img:hover {
+  transform: scale(1.05); /* slight hover effect */
+}
+
+/* HAMBURGER STYLES */
+.hamburger {
+  display: none;
+  font-size: 2rem;
+  cursor: pointer;
+  color: #1f3d1f;
+}
+
+@media (max-width: 768px) {
+  .nav-links {
+  display: none;
+  flex-direction: column;
+  width: 100%;
+  background: white;
+  position: absolute;
+  top: 70px;
+  left: 0;
+  text-align: center;
+  padding: 1rem 0;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.nav-links.active {
+  display: flex;
+}
+
+.hamburger {
+  display: block;
+}
+
+.nav-links li {
+  margin: 1rem 0;
+  }
+}
+
+.nav-container {
+  max-width: 1200px;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.logo {
+  font-size: 1.8rem;
+  font-family: 'Georgia', serif;
+  font-weight: bold;
+  color: #1f3d1f;
+}
+
+.nav-links {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+}
+
+/* Base nav links */
+.nav-links li a {
+  text-decoration: none;
+  color: #1f3d1f;
+  font-weight: 500;
+  font-size: 1rem;
+  position: relative;
+  transition: color 0.3s;
+}
+
+/* Underline hover effect */
+.nav-links li a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 0%;
+  height: 2px;
+  background-color: #1f3d1f;
+  transition: width 0.3s ease;
+}
+
+.nav-links li a:hover::after {
+  width: 100%;
+}
+
+/* Hover + active styles */
+.nav-links li a:hover {
+  color: #2e5e2e;
+  font-weight: 600;
+}
+.nav-links li a.active {
+  color: #2e5e2e;
+  font-weight: 600;
+}
+.nav-links li a.active::after {
+  width: 100%;
+}
+
+/* ===========================
+   3. HERO SECTION
+=========================== */
+.hero {
+  background-image: url('cow-hero.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 90vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: white;
+  padding: 2rem;
+  position: relative;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 0;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  max-width: 800px;
+  padding: 2rem;
+}
+
+.hero h1 {
+  font-size: 2.8rem;
+  margin-bottom: 1.5rem;
+  font-family: 'Georgia', serif;
+}
+
+.hero-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+/* ===========================
+   4. BUTTONS
+=========================== */
+.btn {
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-weight: 600;
+  text-decoration: none;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.btn-light {
+  background: white;
+  color: #1f3d1f;
+  border: 2px solid white;
+}
+.btn-light:hover { background: #f0f0f0; }
+
+.btn-dark {
+  background: #1f3d1f;
+  color: white;
+  border: 2px solid #1f3d1f;
+}
+.btn-dark:hover { background: #163016; }
+
+/* ===========================
+   5. GENERAL SECTIONS
+=========================== */
+section {
+  padding: 4rem 2rem;
+  max-width: 1100px;
+  margin: auto;
+  background-color: rgba(255, 255, 255, 0.85);
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  margin-bottom: 2rem;
+  transition: all 0.3s ease;
+}
+section:hover { transform: translateY(-4px); }
+
+section h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  font-family: 'Georgia', serif;
+  color: #1f3d1f;
+}
+
+section p, section ul {
+  font-size: 1rem;
+  color: #333;
+}
+
+ul {
+  list-style: disc;
+  padding-left: 1.5rem;
+  text-align: left;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+/* ===========================
+   6. REPORTS & PROJECT CARDS
+=========================== */
+.reports-page {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+/* Individual Report Card */
+.report-card {
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  text-align: left;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.report-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+}
+
+/* Report Title */
+.report-card h2 {
+  font-size: 1.4rem;
+  margin-bottom: 0.5rem;
+  color: #1f3d1f;
+}
+
+/* Project Type Tags */
+.report-card .tag {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  border-radius: 999px;
+  margin-bottom: 0.75rem;
+  color: white;
+}
+.tag.research { background-color: #2e5e2e; }
+.tag.consultancy { background-color: #8a4fff; }
+.tag.project { background-color: #e67e22; }
+
+/* Action Buttons */
+.card-actions {
+  margin-top: 1rem;
+}
+.card-actions .btn {
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-right: 0.5rem;
+}
+.card-actions .btn-dark {
+  background-color: #1f3d1f;
+  color: white;
+}
+.card-actions .btn-dark:hover { background-color: #163016; }
+
+.card-actions .btn-light {
+  background-color: #2e5e2e;
+  color: white;
+}
+.card-actions .btn-light:hover { background-color: #244a24; }
+
+/* ===========================
+   6B. SERVICES PAGE CARDS
+=========================== */
+.services-page {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+/* Individual Service Card */
+.service-card {
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  text-align: left;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.service-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+}
+
+/* Service Title */
+.service-card h2 {
+  font-size: 1.4rem;
+  margin-bottom: 0.5rem;
+  color: #1f3d1f;
+}
+
+/* Service Type Tags */
+.service-card .tag {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  border-radius: 999px;
+  margin-bottom: 0.75rem;
+  color: white;
+}
+.tag.consulting { background-color: #3498db; }    /* Example: Consulting service */
+.tag.feed { background-color: #27ae60; }         /* Example: Feed formulation */
+.tag.training { background-color: #e67e22; }     /* Example: Training & workshops */
+
+/* Service Card Action Buttons */
+.service-actions {
+  margin-top: 1rem;
+}
+.service-actions .btn {
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-right: 0.5rem;
+}
+
+.service-actions .btn-dark {
+  background-color: #1f3d1f;
+  color: white;
+}
+.service-actions .btn-dark:hover { background-color: #163016; }
+
+.service-actions .btn-light {
+  background-color: #2e5e2e;
+  color: white;
+}
+.service-actions .btn-light:hover { background-color: #244a24; }
+
+/* Booking Form Styling */
+.service-booking {
+  margin-top: 3rem;
+  padding: 3rem 2rem;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 12px;
+  text-align: center;
+}
+
+.booking-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-width: 500px;
+  margin: auto;
+}
+
+.booking-form input,
+.booking-form select,
+.booking-form textarea {
+  padding: 0.75rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  width: 100%;
+}
+
+.booking-form textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.booking-form button {
+  width: fit-content;
+  margin: auto;
+  padding: 0.75rem 2rem;
+}
+
+.contact-info {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+  align-items: flex-start;
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.contact-icon {
+  width: 30px;
+  height: 30px;
+}
+
+.contact-item a {
+  color: #2e5e2e;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s;
+}
+
+.contact-item a:hover {
+  color: #1f3d1f;
+}
+
+/* Make it row-based on larger screens */
+@media (min-width: 768px) {
+  .contact-info {
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+  }
+}
+
+/* ===========================
+   7. FOOTER
+=========================== */
+footer {
+  background-color: #1f3d1f;
+  color: white;
+  text-align: center;
+  padding: 2rem;
+  margin-top: 3rem;
+  font-size: 0.9rem;
+}
